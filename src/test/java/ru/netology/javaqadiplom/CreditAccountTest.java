@@ -57,7 +57,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNullAccountRate() {
-        // проверка исключений по ставке, ставка не может быть отрицательной,
+        // проверка исключений по ставке, может быть нулевой
             CreditAccount account = new CreditAccount(
                     1_000,
                     5_000,
