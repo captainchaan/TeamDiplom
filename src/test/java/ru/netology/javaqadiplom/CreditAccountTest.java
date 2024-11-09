@@ -140,7 +140,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(1000, account.yearChange());
     }
     @Test
-    public void shouldSetNegativeAmountWithPercent() { //balance / 100 * rate
+    public void shouldSetNegativeAmountWithPercent1() { //balance / 100 * rate
         CreditAccount account = new CreditAccount(
                 1_000,
                 5_000,
@@ -151,12 +151,6 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(800, account.yearChange());
     }
-
-
-
-
-
-
 
 
 }
