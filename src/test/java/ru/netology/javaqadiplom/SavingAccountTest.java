@@ -79,6 +79,19 @@ public class SavingAccountTest {
         });
     }
 
+    @Test // Баланс не может быть отрицательным
+    public void shouldNegativeMaxBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    2_000,
+                    1_000,
+                    -4_000,
+                    5
+            );
+
+        });
+    }
+
         @Test
         public void shouldNegativeBalanceAndMiBalance() {
             Assertions.assertThrows(IllegalArgumentException.class, () -> {
