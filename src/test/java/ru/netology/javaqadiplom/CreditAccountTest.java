@@ -18,7 +18,7 @@ public class CreditAccountTest {
         Assertions.assertEquals(3_000, account.getBalance());
     }
     @Test
-    public void shouldAddToPositiveBalance1() { // баланс должен обновиться с учетом изначального баланса
+    public void shouldAddToPositiveBalance1() { // баланс должен обновится с учетом изначального баланса
         CreditAccount account = new CreditAccount(
                 1_000,
                 5_000,
@@ -91,7 +91,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNegativeCreditLimit() {
-        // проверка исключений по начальному счету, он не может быть отрицательным
+        // проверка исключений по кредитному лимиту, он не может быть отрицательным
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(
                     2_000,
