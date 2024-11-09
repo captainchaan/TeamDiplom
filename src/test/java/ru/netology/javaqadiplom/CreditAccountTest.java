@@ -17,6 +17,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(3_000, account.getBalance());
     }
+
     @Test
     public void shouldAddToPositiveBalance1() { // баланс должен обновится с учетом изначального баланса
         CreditAccount account = new CreditAccount(
@@ -29,6 +30,7 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(4_000, account.getBalance());
     }
+
     @Test
     public void shouldAddNegative() { // баланс не должен пополниться
         CreditAccount account = new CreditAccount(
@@ -58,15 +60,16 @@ public class CreditAccountTest {
     @Test
     public void shouldNullAccountRate() {
         // проверка исключений по ставке, может быть нулевой
-            CreditAccount account = new CreditAccount(
-                    1_000,
-                    5_000,
-                    0
-            );
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                0
+        );
 
-            Assertions.assertEquals(1_000, account.getBalance());
+        Assertions.assertEquals(1_000, account.getBalance());
 
     }
+
     @Test
     public void shouldNegativeAccountRate() { // проверка исключений по ставке
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -77,6 +80,7 @@ public class CreditAccountTest {
             );
         });
     }
+
     @Test
     public void shouldNegativeInitialBalance() {
         // проверка исключений по начальному счету, он не может быть отрицательным
@@ -139,6 +143,4 @@ public class CreditAccountTest {
     }
 
 
-
-
-    }
+}
