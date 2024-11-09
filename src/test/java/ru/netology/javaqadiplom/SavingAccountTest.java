@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SavingAccountTest {
-           // Адд тесты
+    // Адд тесты
     @Test // Пополнение баланса
     public void shouldAddLessThanMaxBalance() {
         SavingAccount account = new SavingAccount(
@@ -37,20 +37,34 @@ public class SavingAccountTest {
         Assertions.assertEquals(expected, actual);
     }
 
-             // Тесты на ставку
+    // Тесты на ставку
     @Test // Ставка равна 0
     public void shouldNullRate() {
-            SavingAccount account = new SavingAccount(
-                    2_000,
-                    1_000,
-                    4_000,
-                    0
-            );
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                4_000,
+                0
+        );
 
-            int expected =0;
-            int actual = account.rate;
+        int expected = 0;
+        int actual = account.rate;
 
-            Assertions.assertEquals(expected,actual);
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test // Ставка равна 0
+    public void shouldPositiveRate() {
+        SavingAccount account = new SavingAccount(
+                2_000,
+                1_000,
+                4_000,
+                5
+        );
+
+        int expected = 5;
+        int actual = account.rate;
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test // Ставка принимает отрицательное значение
@@ -65,7 +79,8 @@ public class SavingAccountTest {
 
         });
     }
-               // Тесты баланса
+
+    // Тесты баланса
     @Test // Баланс не может быть отрицательным
     public void shouldNegativeBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -92,17 +107,17 @@ public class SavingAccountTest {
         });
     }
 
-        @Test
-        public void shouldNegativeBalanceAndMiBalance() {
-            Assertions.assertThrows(IllegalArgumentException.class, () -> {
-                SavingAccount account = new SavingAccount(
-                        -1_000,
-                        -1_000,
-                        4_000,
-                        5
-                );
+    @Test
+    public void shouldNegativeBalanceAndMiBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    -1_000,
+                    -1_000,
+                    4_000,
+                    5
+            );
 
-            });
+        });
     }
 
     @Test // Баланс не может быть ниже Минимального значения
@@ -132,7 +147,8 @@ public class SavingAccountTest {
         });
 
     }
-         // Тесты на покупку
+
+    // Тесты на покупку
     @Test // Покупка в пределах ограничений
     public void shouldCorrectPay() {
         SavingAccount account = new SavingAccount(
@@ -214,7 +230,45 @@ public class SavingAccountTest {
         Assertions.assertEquals(30, account.yearChange());
     }
 
+    @Test // Изменения баланса по процентной годовой ставке
+    public void shouldYearChangeNull() {
+        SavingAccount account = new SavingAccount(
+                200,
+                0,
+                1_000,
+                0
+        );
 
 
+        Assertions.assertEquals(0, account.yearChange());
+    }
+
+    @Test
+    public void shouldGetMinBalance() {
+        SavingAccount account = new SavingAccount(
+                8_000,
+                5_000,
+                10_000,
+                5
+        );
+        int expectedMinBalance = 5_000;
+        Assertions.assertEquals(expectedMinBalance, account.getMinBalance());
+
+    }
+
+
+
+    @Test
+    public void shouldGetMaxBalance() {
+        SavingAccount account = new SavingAccount(
+                8_000,
+                5_000,
+                10_000,
+                5
+        );
+        int expectedMaxBalance = 10_000;
+        Assertions.assertEquals(expectedMaxBalance, account.getMaxBalance());
+
+    }
 }
 
