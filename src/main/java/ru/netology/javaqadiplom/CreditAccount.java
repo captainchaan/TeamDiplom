@@ -69,10 +69,9 @@ public class CreditAccount extends Account {
      * состоянию счёта, то операция должна
      * завершиться вернув false и ничего не поменяв на счёте.
      *
-     * @param amount - сумма пополнения
-     * @param amount
+     * @param amount - сумма пополнения.
      * @return true если операция прошла успешно, false иначе.
-     * @return
+     *
      */
     @Override
     public boolean add(int amount) {
@@ -96,7 +95,7 @@ public class CreditAccount extends Account {
      * Пример: если на счёте -200 рублей, то при ставке 15% ответ должен быть -30.
      * Пример 2: если на счёте 200 рублей, то при любой ставке ответ должен быть 0.
      *
-     * @return
+     *
      */
     @Override
     public int yearChange() {
