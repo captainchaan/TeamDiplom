@@ -52,6 +52,7 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test // Ставка равна 0
     public void shouldPositiveRate() {
         SavingAccount account = new SavingAccount(
@@ -134,6 +135,32 @@ public class SavingAccountTest {
 
     }
 
+    @Test // Минимальный баланс не может быть больше Максимального
+    public void shouldMinBalanceOverMaxBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    2_000,
+                    5_000,
+                    4_000,
+                    5
+            );
+
+        });
+    }
+
+    @Test // Максимальный не может быть меньше минимального
+    public void shouldMaxBalanceUnderMaxBalance() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            SavingAccount account = new SavingAccount(
+                    1_000,
+                    3_000,
+                    2_000,
+                    5
+            );
+
+        });
+    }
+
     @Test // Баланс не может быть выше Максимального значения
     public void shouldBalanceOverMaxBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -147,6 +174,7 @@ public class SavingAccountTest {
         });
 
     }
+
 
     // Тесты на покупку
     @Test // Покупка в пределах ограничений
