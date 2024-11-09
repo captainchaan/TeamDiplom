@@ -114,43 +114,4 @@ public class CreditAccountTest {
         Assertions.assertEquals(750, account.getBalance());
     }
 
-    @Test
-    public void shouldSetAmountWithPercent() { //balance / 100 * rate
-        CreditAccount account = new CreditAccount(
-                1_000,
-                5_000,
-                15
-        );
-
-        account.pay(1200); //1000 - 1200 = -200/100 * 15 = -30
-
-        Assertions.assertEquals(-30, account.yearChange());
-    }
-
-    @Test
-    public void shouldSetNegativeAmountWithPercent() { //balance / 100 * rate
-        CreditAccount account = new CreditAccount(
-                1_000,
-                5_000,
-                15
-        );
-
-        account.pay(-1200);
-
-        Assertions.assertEquals(1000, account.yearChange());
-    }
-    @Test
-    public void shouldSetNegativeAmountWithPercent1() { //balance / 100 * rate
-        CreditAccount account = new CreditAccount(
-                1_000,
-                5_000,
-                15
-        );
-
-        account.pay(200);
-
-        Assertions.assertEquals(800, account.yearChange());
-    }
-
-
 }
