@@ -40,7 +40,6 @@ public class SavingAccountTest {
              // Тесты на ставку
     @Test // Ставка равна 0
     public void shouldNullRate() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
                     2_000,
                     1_000,
@@ -48,7 +47,10 @@ public class SavingAccountTest {
                     0
             );
 
-        });
+            int expected =0;
+            int actual = account.rate;
+
+            Assertions.assertEquals(expected,actual);
     }
 
     @Test // Ставка принимает отрицательное значение
@@ -75,6 +77,19 @@ public class SavingAccountTest {
             );
 
         });
+    }
+
+        @Test
+        public void shouldNegativeBalanceAndMiBalance() {
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                SavingAccount account = new SavingAccount(
+                        -1_000,
+                        -1_000,
+                        4_000,
+                        5
+                );
+
+            });
     }
 
     @Test // Баланс не может быть ниже Минимального значения
