@@ -58,14 +58,14 @@ public class CreditAccountTest {
     @Test
     public void shouldNullAccountRate() {
         // проверка исключений по ставке, ставка не может быть отрицательной,
-        // но может равняться 0
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(
                     1_000,
                     5_000,
                     0
             );
-        });
+
+            Assertions.assertEquals(1_000, account.getBalance());
+
     }
     @Test
     public void shouldNegativeAccountRate() { // проверка исключений по ставке
