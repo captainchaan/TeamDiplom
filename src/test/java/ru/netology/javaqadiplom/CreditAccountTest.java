@@ -17,4 +17,130 @@ public class CreditAccountTest {
 
         Assertions.assertEquals(3_000, account.getBalance());
     }
+
+    @Test
+    public void shouldAddToPositiveBalance1() { // баланс должен обновится с учетом изначального баланса
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                15
+        );
+
+        account.add(3_000);
+
+        Assertions.assertEquals(4_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddNegative() { // баланс не должен пополниться
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                15
+        );
+
+        account.add(-3_000);
+
+        Assertions.assertEquals(1_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldAddMoreCreditLimit() { // баланс не должен пополниться, так как заходит за кредитный лимит
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                15
+        );
+
+        account.add(6_000);
+
+        Assertions.assertEquals(1_000, account.getBalance());
+    }
+
+    @Test
+    public void shouldNullAccountRate() {
+        // проверка исключений по ставке, может быть нулевой
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                0
+        );
+
+        Assertions.assertEquals(1_000, account.getBalance());
+
+    }
+
+    @Test
+    public void shouldNegativeAccountRate() { // проверка исключений по ставке
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(
+                    1_000,
+                    5_000,
+                    -2
+            );
+        });
+    }
+
+    @Test
+    public void shouldNegativeInitialBalance() {
+        // проверка исключений по начальному счету, он не может быть отрицательным
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(
+                    -200,
+                    5_000,
+                    15
+            );
+        });
+    }
+
+    @Test
+    public void shouldNegativeCreditLimit() {
+        // проверка исключений по кредитному лимиту, он не может быть отрицательным
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(
+                    2_000,
+                    -200,
+                    15
+            );
+        });
+    }
+
+    @Test
+    public void shouldPay() { //пополнение, баланс принимает значение баланс минус сумма покупки.
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                15
+        );
+
+        account.pay(250);
+
+        Assertions.assertEquals(750, account.getBalance());
+    }
+
+    @Test
+    public void shouldSetAmountWithPercent() { //balance / 100 * rate
+        CreditAccount account = new CreditAccount(
+                250,
+                5_000,
+                15
+        );
+
+        account.pay(500); //250 - 500 = -250/100 * 15 = -37,5
+
+        Assertions.assertEquals(-37, account.yearChange());
+    }
+
+    @Test
+    public void shouldSetPositiveAmountWithPercent() { //balance / 100 * rate
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                15
+        );
+
+        Assertions.assertEquals(0, account.yearChange());
+    }
+
+
 }
