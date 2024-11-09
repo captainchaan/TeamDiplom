@@ -248,16 +248,16 @@ public class SavingAccountTest {
     @Test // Изменения баланса по процентной годовой ставке
     public void shouldYearChange() {
         SavingAccount account = new SavingAccount(
-                200,
+                456,
                 0,
                 1_000,
                 15
         );
 
 
-        Assertions.assertEquals(30, account.yearChange());
+        Assertions.assertEquals(68, account.yearChange());
     }
-    
+
 
     @Test
     public void shouldGetMinBalance() {
