@@ -106,7 +106,7 @@ public class SavingAccountTest {
     }
 
     @Test // Баланс не может быть ниже Минимального значения
-    public void shouldBalanсeOverMinBalance() {
+    public void shouldBalanceOverMinBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
                     2_000,
@@ -120,7 +120,7 @@ public class SavingAccountTest {
     }
 
     @Test // Баланс не может быть выше Максимального значения
-    public void shouldBalanсeOverMaxBalance() {
+    public void shouldBalanceOverMaxBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             SavingAccount account = new SavingAccount(
                     6_000,
