@@ -273,7 +273,6 @@ public class SavingAccountTest {
     }
 
 
-
     @Test
     public void shouldGetMaxBalance() {
         SavingAccount account = new SavingAccount(
